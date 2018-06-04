@@ -63,5 +63,5 @@ def get_score(service, test_data):
     url = "http://%s:8008/test/scorePlayer?modelId=%s&actorFeature=%s&receiverFeature=%s&realTimeFeature=%s" % (
         service, model_id, quote(actor_features), quote(receiver_features), quote(real_time_features)
     )
-    print(url)
+    # print(url)
     return requests.get(url)
