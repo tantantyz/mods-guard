@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import json
 from json.decoder import JSONDecodeError
 
@@ -10,6 +10,11 @@ UPLOAD_FOLDER = "."
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
+@app.route("/")
+def redirect_index():
+    return redirect("/index")
 
 
 @app.route("/index")
