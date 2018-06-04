@@ -26,28 +26,30 @@
     </div>
     <hr>
     <div style="padding:5px 5px 5px;">
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="word-break:break-all; word-wrap:break-all;">
             <thead>
             <tr>
                 <th scope="col">actorID</th>
                 <th scope="col">receiverID</th>
-                <th scope="col">actor features</th>
-                <th scope="col">receiver features</th>
-                <th scope="col">real features</th>
+                <!--<th scope="col">actor features</th>-->
+                <!--<th scope="col">receiver features</th>-->
+                <!--<th scope="col">real features</th>-->
                 <th scope="col">expect score</th>
                 <th scope="col">real score</th>
+                <th scope="col">status</th>
             </tr>
             </thead>
             <tbody>
             {% for item in items %}
-            <tr {% if item.expect_score == item.real_score %} "bgcolor="#FF0000" {% else %} "" {% endif %}>
+            <tr {% if item.status %} bgcolor="#00FF00" {% else %} bgcolor="#FF0000" {% endif %}>
                 <td>{{item.actor_user_id}}</td>
                 <td>{{item.receiver_user_id}}</td>
-                <td>{{item.actor_features}}</td>
-                <td>{{item.receiver_features}}</td>
-                <td>{{item.real_time_features}}</td>
+                <!--<td width="25%">{{item.actor_features}}</td>-->
+                <!--<td width="30%">{{item.receiver_features}}</td>-->
+                <!--<td width="20%">{{item.real_time_features}}</td>-->
                 <td>{{item.expect_score}}</td>
                 <td>{{item.real_score}}</td>
+                <td>{{item.status}}</td>
             </tr>
             {% endfor %}
             </tbody>

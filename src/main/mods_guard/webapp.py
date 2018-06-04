@@ -46,11 +46,12 @@ def score_play():
             resp["actor_features"] = test["actor_features"]
             resp["receiver_features"] = test["receiver_features"]
             resp["real_time_features"] = test["real_time_features"]
-
+            resp["expect_score"] = test["expect_score"]
             if r.status_code == 200:
                 resp["real_score"] = float(r.text)
             else:
                 resp["real_score"] = -1.0
+            resp["status"] = abs(resp["expect_score"] - resp["real_score"]) < 0.1 / resp["expect_score"]
             items.append(resp)
         except JSONDecodeError as e:
             print(e)
