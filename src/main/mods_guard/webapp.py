@@ -40,7 +40,6 @@ def score_play():
         try:
             test = json.loads(data)
             r = get_score(host, test)
-
             resp = dict()
             resp["actor_user_id"] = test["actor_user_id"]
             resp["receiver_user_id"] = test["receiver_user_id"]
@@ -48,7 +47,10 @@ def score_play():
             resp["receiver_features"] = test["receiver_features"]
             resp["real_time_features"] = test["real_time_features"]
 
-            resp["real_score"] = float(r.text)
+            if r.status_code == 200:
+                resp["real_score"] = float(r.text)
+            else:
+                resp["real_score"] = -1.0
             items.append(resp)
         except JSONDecodeError as e:
             print(e)
