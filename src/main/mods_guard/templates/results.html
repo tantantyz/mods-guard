@@ -41,7 +41,7 @@
             </thead>
             <tbody>
             {% for item in items %}
-            <tr {% if item.status %} bgcolor="#00FF00" {% else %} bgcolor="#FF0000" {% endif %}>
+            <tr {% if item.status == "Pass" %} bgcolor="#00FF00" {% else %} bgcolor="#FF0000" {% endif %}>
                 <td>{{item.actor_user_id}}</td>
                 <td>{{item.receiver_user_id}}</td>
                 <!--<td width="25%">{{item.actor_features}}</td>-->

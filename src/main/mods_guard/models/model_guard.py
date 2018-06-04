@@ -53,16 +53,15 @@ def get_score(service, test_data):
     receiver_features = wrapper_features(test_data["receiver_features"])
     real_time_features = test_data["real_time_features"]
 
+    actor_features, receiver_features, real_time_features = merge_real_time_features(actor_features,
+                                                                                     receiver_features,
+                                                                                     real_time_features)
     test_data["actor_features"] = actor_features
     test_data["receiver_features"] = receiver_features
     test_data["real_time_features"] = real_time_features
 
-    actor_features, receiver_features, real_time_features = merge_real_time_features(actor_features,
-                                                                                     receiver_features,
-                                                                                     real_time_features)
-
     url = "http://%s:8008/test/scorePlayer?modelId=%s&actorFeature=%s&receiverFeature=%s&realTimeFeature=%s" % (
         service, model_id, quote(actor_features), quote(receiver_features), quote(real_time_features)
     )
-
+    print(url)
     return requests.get(url)

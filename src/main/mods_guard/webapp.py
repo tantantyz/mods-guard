@@ -51,7 +51,7 @@ def score_play():
                 resp["real_score"] = float(r.text)
             else:
                 resp["real_score"] = -1.0
-            resp["status"] = abs(resp["expect_score"] - resp["real_score"]) < 0.1 / resp["expect_score"]
+            resp["status"] = "Pass" if abs(resp["expect_score"] - resp["real_score"]) < 0.001 * resp["expect_score"] else "Failed"
             items.append(resp)
         except JSONDecodeError as e:
             print(e)
