@@ -29,7 +29,10 @@ def combine_real_time_features(features, indices, real_time_features):
             pos = features.index("##fFloat##")
             features = features[:pos] + "##fFloat##" + real_features + "," + features[pos + 10:]
         else:
-            features = features + "##fFloat##" + real_features
+            if len(features) > 0:
+                features = features + "##fFloat##" + real_features
+            else:
+                features = "fFloat##" + real_features
 
     return features
 
