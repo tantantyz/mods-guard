@@ -26,6 +26,7 @@ def index():
 def score_play():
     env = request.form['env']
     host = random_pick_a_service(env)
+    print("Host = ", host)
     items = list()
     if len(request.files) > 0:
         file = request.files['test_data_file']
@@ -50,6 +51,7 @@ def score_play():
             if r.status_code == 200:
                 resp["real_score"] = float(r.text)
             else:
+                print(r.text)
                 resp["real_score"] = -1.0
             resp["status"] = "Pass" if abs(resp["expect_score"] - resp["real_score"]) < 0.001 * resp["expect_score"] else "Failed"
             items.append(resp)
