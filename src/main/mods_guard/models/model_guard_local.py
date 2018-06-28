@@ -7,7 +7,7 @@ echo "rdr pass on lo0 inet proto tcp from any to 10.189.100.43 port 8008 -> 127.
 
 from urllib.parse import quote
 import subprocess
-from .model_guard import wrapper_features, merge_real_time_features
+from .model_guard import merge_real_time_features
 
 test_file = "check_hdfs_write_FEMALE_WEIGHTED_7_1_2018-04-08_2018-04-09_1_201805242330"
 
@@ -28,8 +28,8 @@ with open(test_file, 'r') as fin:
         swiped_timestamp = segs[2]
         actor_swipe_status = segs[3]
         model_id = segs[4]
-        actor_features = wrapper_features(segs[5])
-        receiver_features = wrapper_features(segs[6])
+        actor_features = segs[5]
+        receiver_features = segs[6]
         real_time_features = segs[7]
         score = segs[8]
         actor_features, receiver_features, real_time_features = merge_real_time_features(actor_features,
