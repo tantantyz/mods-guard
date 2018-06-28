@@ -13,14 +13,6 @@ actor_real_time_feature_indices = {
 }
 
 
-def wrapper_features(feat):
-    segs = feat.split("##fVec##")
-    if len(segs) == 2:
-        return segs[0] + "##fVec##" + segs[1].replace("#", "|").replace("51001|", "51001#").replace("51002|", "51002#")
-    else:
-        return feat
-
-
 def combine_real_time_features(features, indices, real_time_features):
     real_features = ",".join([indices[ele] + "#" + str(real_time_features[ele]) for ele in
                               filter(lambda x: x in real_time_features, indices)])
@@ -58,8 +50,8 @@ def get_score(service, test_data):
     actor_user_id = test_data["actor_user_id"]
     receiver_user_id = test_data["receiver_user_id"]
     model_id = test_data["model_id"]
-    actor_features = wrapper_features(test_data["actor_features"])
-    receiver_features = wrapper_features(test_data["receiver_features"])
+    actor_features = test_data["actor_features"]
+    receiver_features = test_data["receiver_features"]
     real_time_features = test_data["real_time_features"]
 
     actor_features, receiver_features, real_time_features = merge_real_time_features(actor_features,
