@@ -57,5 +57,8 @@ def score_play():
             items.append(resp)
         except JSONDecodeError as e:
             print(e)
-
-    return render_template("results.html", items=items)
+    if len(items) > 0:
+        pass_rate = len(filter(lambda x: x["status"] == "Pass", items)) * 1.0 / len(items)
+    else:
+        pass_rate = 0.0
+    return render_template("results.html", items=items, pass_rate=pass_rate)
