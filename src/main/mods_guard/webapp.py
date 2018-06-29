@@ -53,12 +53,18 @@ def score_play():
             else:
                 print(r.text)
                 resp["real_score"] = -1.0
-            resp["status"] = "Pass" if abs(resp["expect_score"] - resp["real_score"]) < 0.01 * resp["expect_score"] else "Failed"
+            resp["status"] = "Pass" if abs(resp["expect_score"] - resp["real_score"]) < 0.01 * resp[
+                "expect_score"] else "Failed"
             items.append(resp)
         except JSONDecodeError as e:
             print(e)
+            
     if len(items) > 0:
-        pass_rate = len(filter(lambda x: x["status"] == "Pass", items)) * 1.0 / len(items)
+        count = 0
+        for ele in items:
+            if ele["status"] == "Pass":
+                count += 1
+        pass_rate = count * 1.0 / len(items)
     else:
         pass_rate = 0.0
     return render_template("results.html", items=items, pass_rate=pass_rate)
