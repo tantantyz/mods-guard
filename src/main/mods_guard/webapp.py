@@ -46,7 +46,7 @@ def score_play():
             resp["receiver_user_id"] = test["receiver_user_id"]
             resp["actor_features"] = test["actor_features"]
             resp["receiver_features"] = test["receiver_features"]
-            resp["real_time_features"] = test["real_time_features"]
+            resp["real_time_features"] = "" if "real_time_features" not in test else test["real_time_features"]
             resp["expect_score"] = test["expect_score"]
             if r.status_code == 200:
                 resp["real_score"] = float(r.text)
