@@ -8,7 +8,7 @@ def get_score(service, test_data):
     model_id = test_data["model_id"]
     actor_features = test_data["actor_features"]
     receiver_features = test_data["receiver_features"]
-    real_time_features = test_data["real_time_features"]
+    real_time_features = "" if "real_time_features" not in test_data else test_data["real_time_features"]
 
     test_data["actor_features"] = actor_features
     test_data["receiver_features"] = receiver_features
