@@ -1,4 +1,7 @@
 services = {
+    "localhost": [
+        'localhost'
+    ],
     "staging": [
         '10.189.200.55',
         '10.189.200.56'
