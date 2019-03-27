@@ -3,8 +3,8 @@ import requests
 
 
 def get_score(service, test_data):
-    actor_user_id = test_data.get("actor_user_id", "")
-    receiver_user_id = test_data.get("receiver_user_id", "")
+    actor_user_id = test_data.get("actor_user_id", 0)
+    receiver_user_id = test_data.get("receiver_user_id", 0)
     model_id = test_data.get("model_id", "")
     actor_features = test_data.get("actor_features", "")
     receiver_features = test_data.get("receiver_features", "")
