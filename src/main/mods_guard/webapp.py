@@ -42,11 +42,11 @@ def score_play():
             test = json.loads(data)
             r = get_score(host, test)
             resp = dict()
-            resp["actor_user_id"] = test["actor_user_id"]
-            resp["receiver_user_id"] = test["receiver_user_id"]
-            resp["actor_features"] = test["actor_features"]
-            resp["receiver_features"] = test["receiver_features"]
-            resp["real_time_features"] = "" if "real_time_features" not in test else test["real_time_features"]
+            resp["actor_user_id"] = test.get("actor_user_id", "")
+            resp["receiver_user_id"] = test.get("receiver_user_id", "")
+            resp["actor_features"] = test.get("actor_features", "")
+            resp["receiver_features"] = test.get("receiver_features", "")
+            resp["real_time_features"] = "" if "real_time_features" not in test else test.get("real_time_features", "")
             resp["expect_score"] = test["expect_score"]
             if r.status_code == 200:
                 resp["real_score"] = float(r.text)
